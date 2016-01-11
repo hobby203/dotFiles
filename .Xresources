@@ -65,6 +65,6 @@ Xft.rgba: rgb
 
 ## URXVT
 
-URxvt.scrollbar: false
+URxvt.scrollBar: false
 URxvt.font:xft:DejaVu Sans Mono:pixelsize=26:style=Book
 URxvt.boldfont:xft:DejaVu Sans Mono:pixelsize=26:style=Bold
