@@ -6,14 +6,14 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-#define S_base03        #002b36
-#define S_base02        #073642
-#define S_base01        #586e75
-#define S_base00        #657b83
-#define S_base0         #839496
-#define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
+#define S_base03        #fdf6e3
+#define S_base02        #eee8d5
+#define S_base01        #93a1a1
+#define S_base00        #839496
+#define S_base0         #657b83
+#define S_base1         #586e75
+#define S_base2         #073642
+#define S_base3         #002b36
 
 *background:            S_base03
 *foreground:            S_base0
@@ -66,5 +66,5 @@ Xft.rgba: rgb
 ## URXVT
 
 URxvt.scrollBar: false
-URxvt.font:xft:DejaVu Sans Mono:pixelsize=26:style=Book
+URxvt.font:xft:DejaVu Sans Mono:pixelsize=26:style=Book,xft:symbola:pixelsize=20:style=Regular
 URxvt.boldfont:xft:DejaVu Sans Mono:pixelsize=26:style=Bold

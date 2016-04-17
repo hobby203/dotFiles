@@ -40,12 +40,10 @@ interval=1
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-label=VOL
-#label=♪
+label=♪
 instance=Master
 #instance=PCM
-interval=once
-signal=10
+interval=1
 
 # Memory usage
 #
@@ -55,11 +53,11 @@ label=MEM
 separator=false
 interval=30
 
-[memory]
-label=SWAP
-instance=swap
-separator=false
-interval=30
+#[memory]
+#label=SWAP
+#instance=swap
+#separator=false
+#interval=30
 
 # Disk usage
 #
@@ -78,7 +76,7 @@ interval=30
 [iface]
 #instance=wlan0
 color=#00FF00
-interval=10
+interval=1
 separator=false
 
 [wifi]
@@ -97,7 +95,7 @@ separator=true
 [cpu_usage]
 label=CPU
 interval=10
-min_width=CPU: 100.00%
+#min_width=CPU: 100.00%
 #separator=false
 
 #[load_average]
@@ -115,8 +113,9 @@ interval=30
 # Date Time
 #
 [time]
-command=date '+%H:%M'
+command=date '+%H:%M %e/%m/%y'
 interval=15
+
 
 # Generic media player support
 #

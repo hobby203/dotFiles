@@ -30,13 +30,13 @@ font pango:OpenSans-Regular 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec --no-startup-id urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 3 -width 100 -padding 800 -bw 0 -opacity '85' -font 'OpenSans-Regular 24'
+bindsym $mod+d exec --no-startup-id rofi -show run -lines 3 -width 100 -padding 800 -bw 0 -opacity '85' -font 'OpenSans-Regular 24'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -94,11 +94,12 @@ bindsym $mod+a focus parent
 
 ## workspaces
 
-#set $browser "ï‰"
+set $default "1: Browser"
+set $music "10: Music"
 
 
 # switch to workspace
-bindsym $mod+1 workspace 1
+bindsym $mod+1 workspace $default
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
@@ -107,10 +108,10 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace $music
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+1 move container to workspace $default
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
@@ -119,7 +120,7 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+#bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -171,7 +172,7 @@ bar {
 }
 
 #lock screen
-bindsym $mod+shift+x exec /home/ed/.scripts/pretty_lock
+bindsym $mod+shift+x exec --no-startup-id /home/ed/.scripts/pretty_lock
 
 # border / titlebar
 new_window normal
@@ -187,29 +188,43 @@ client.urgent #CE4045 #CE4045 #FFFFFF #DCCD69
 
 # gaps
 
-gaps inner 10
-gaps outer 5
+gaps inner 7
+gaps outer 3
 smart_borders on
 new_window 1pixel
 
 # application shortcuts
 
-bindysm $mod+w exec firefox
+bindysm --release $mod+c exec --no-startup-id chromium
 
-exec compton -f
+exec --no-startup-id compton -f
 
 ## custom keys
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec /home/ed/.scripts/volume.rb up #increase sound volume
-bindsym XF86AudioLowerVolume exec /home/ed/.scripts/volume.rb down #decrease sound volume
-bindsym XF86AudioMute exec /home/ed/.scripts/volume.rb toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.scripts/volume.rb increase #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.scripts/volume.rb decrease #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id ~/.scripts/volume.rb toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec mpc toggle -q
-bindsym XF86AudioPause exec mpc toggle -q
-bindsym XF86AudioNext exec mpc next -q
-bindsym XF86AudioPrev exec mpc prev -q
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+#bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+## Floating Windows
+
+for_window [class="Thunar"] floating enable
+
+
+
+## Wallpaper
+
+exec feh --bg-fill ~/wallpaper.png
+
+## Startup Applications
+
+exec --no-startup-id i3-msg 'workspace $music; exec /usr/bin/spotify; workspace $default'
